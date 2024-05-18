@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -30,3 +30,8 @@ class TagUpdateView(generic.UpdateView):
     template_name = "todo/tag_form.html"
     form_class = TagForm
     success_url = reverse_lazy("todo:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy('todo:tag-list')
