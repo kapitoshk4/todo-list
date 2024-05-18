@@ -24,3 +24,9 @@ class TagCreateView(generic.CreateView):
     form_class = TagForm
     success_url = reverse_lazy("todo:tag-list")
 
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    template_name = "todo/tag_form.html"
+    form_class = TagForm
+    success_url = reverse_lazy("todo:tag-list")
