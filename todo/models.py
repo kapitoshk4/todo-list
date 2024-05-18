@@ -20,6 +20,7 @@ class Todo(models.Model):
     title = models.CharField(max_length=60)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=NOT_DONE)
     created_at = models.DateTimeField(auto_now_add=True)
+    deadline = models.DateTimeField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name="todos", blank=True)
 
     class Meta:
