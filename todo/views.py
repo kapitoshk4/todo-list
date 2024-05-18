@@ -20,6 +20,13 @@ class TodoCreateView(generic.CreateView):
     success_url = reverse_lazy("todo:task-list")
 
 
+class TodoUpdateView(generic.UpdateView):
+    model = Todo
+    template_name = "todo/todo_form.html"
+    form_class = TodoForm
+    success_url = reverse_lazy("todo:task-list")
+
+
 class TagListView(generic.ListView):
     model = Tag
     template_name = "todo/tag_list.html"
