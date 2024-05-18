@@ -2,17 +2,32 @@
 
 {% block content %}
   <h1>TODO list
-    <a href="#" class="btn btn-primary float-right">Add task</a>
+    <a href="{% url 'todo:task-create' %}" class="btn btn-primary float-right">Add task</a>
   </h1>
   {% if todo_list %}
     {% for task in todo_list %}
       <h3>{{ task.title }} {{ task.status }}
-        <button class="btn btn-primary float-right">
-          {% if task.status == "Not Done" %}Complete{% else %}Undo{% endif %}
-        </button>
+      <div class="float-right">
+        <form action="#" method="post">
+          {% csrf_token %}
+          {% if task.status == "Not Done" %}
+            <input type="submit" class="btn btn-primary" value="Complete">
+          {% else %}
+            <input type="submit" class="btn btn-secondary" value="Undo">
+          {% endif %}
+        </form>
+      </div>
       </h3>
       <p>{{ task.created_at }}</p>
-      <p>Tags: {{ task.status }} Update {% if task.status %}Delete{% endif %}</p>
+      <p>Tags: 
+        {% for tag in task.tags.all %}
+          {{ tag.title }}
+        {% endfor %}
+        <a href="#">Update</a> 
+        {% if task.status %}
+          <a href="#">Delete</a>
+        {% endif %}
+      </p>
       <hr>
     {% endfor %}
   {% endif %}
