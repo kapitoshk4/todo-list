@@ -33,6 +33,22 @@ class TodoDeleteView(generic.DeleteView):
     success_url = reverse_lazy("todo:task-list")
 
 
+class CompleteTaskView(generic.UpdateView):
+    model = Todo
+
+    def get_success_url(self):
+        return reverse_lazy("todo:task-list")
+
+    def post(self, request, *args, **kwargs):
+        task = self.get_object()
+        if task.status == "Done":
+            task.status = "Not Done"
+        else:
+            task.status = "Done"
+        task.save()
+        return redirect(self.get_success_url())
+
+
 class TagListView(generic.ListView):
     model = Tag
     template_name = "todo/tag_list.html"
