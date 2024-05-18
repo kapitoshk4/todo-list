@@ -24,7 +24,7 @@
           {{ tag.title }}
         {% endfor %}
         <a href="{% url 'todo:task-update' pk=task.pk %}">Update</a>
-        <a href="#">Delete</a>
+        <a href="{% url 'todo:task-delete' pk=task.pk %}">Delete</a>
       </p>
       <hr>
     {% endfor %}
