@@ -1,0 +1,18 @@
+body {
+    margin-top: 20px;
+    background-color: blanchedalmond;
+}
+
+.task-done {
+    color: chartreuse;
+}
+
+.task-undone {
+    color: crimson;
+}
+
+.sidebar-nav {
+    padding: 0;
+    list-style: none;
+    font-size: 30px
+}
