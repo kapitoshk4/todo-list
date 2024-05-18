@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from django.views import generic
 
-from todo.models import Todo
+from todo.models import Todo, Tag
 
 
 class TodoListView(generic.ListView):
     model = Todo
     template_name = "todo/todo_list.html"
     context_object_name = "todo_list"
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    template_name = "todo/tag_list.html"
+    context_object_name = "tags"
