@@ -20,7 +20,10 @@
             </a>
           </td>
           <td>
-            <input type="submit" class="btn btn-secondary" value="Delete">
+            <form action="{% url 'todo:tag-delete' pk=tag.pk %}" method="post">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-secondary" value="Delete">
+            </form>
           </td>
         </tr>
       {% endfor %}
