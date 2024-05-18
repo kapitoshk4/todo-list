@@ -23,10 +23,8 @@
         {% for tag in task.tags.all %}
           {{ tag.title }}
         {% endfor %}
-        <a href="#">Update</a> 
-        {% if task.status %}
-          <a href="#">Delete</a>
-        {% endif %}
+        <a href="{% url 'todo:task-update' pk=task.pk %}">Update</a>
+        <a href="#">Delete</a>
       </p>
       <hr>
     {% endfor %}
