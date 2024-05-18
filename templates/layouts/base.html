@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To do list</title>
+</head>
+<body>
+{% block sidebar %}
+  {% include "includes/sidebar.html" %}
+{% endblock %}
+<div class="col-sm-9">
+  {% block content %}
+  {% endblock %}
+</div>
+</body>
+</html>
