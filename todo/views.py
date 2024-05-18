@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from todo.forms import TagForm
+from todo.forms import TagForm, TodoForm
 from todo.models import Todo, Tag
 
 
@@ -10,6 +10,14 @@ class TodoListView(generic.ListView):
     model = Todo
     template_name = "todo/todo_list.html"
     context_object_name = "todo_list"
+    queryset = Todo.objects.all().prefetch_related("tags")
+
+
+class TodoCreateView(generic.CreateView):
+    model = Todo
+    template_name = "todo/todo_form.html"
+    form_class = TodoForm
+    success_url = reverse_lazy("todo:task-list")
 
 
 class TagListView(generic.ListView):
