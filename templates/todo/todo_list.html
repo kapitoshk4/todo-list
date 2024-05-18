@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>TODO list
+    <a href="#" class="btn btn-primary float-right">Add task</a>
+  </h1>
+  {% if todo-list %}
+    {% for task in todo-list %}
+      <h3>{{ task.title }} {{ task.status }}
+        <button class="btn btn-primary float-right">
+          {% if task.status == "Not Done" %}Complete{% else %}Undo{% endif %}
+        </button>
+      </h3>
+      <p>{{ task.created_at }}</p>
+      <p>Tags: {{ task.status }} Update {% if task.status %}Delete{% endif %}</p>
+      <hr>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
