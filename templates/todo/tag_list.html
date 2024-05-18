@@ -15,14 +15,12 @@
         <tr>
           <td>{{ tag.title }}</td>
           <td>
-            <a href="#">
+            <a href="{% url 'todo:tag-update' pk=tag.pk %}">
               <button class="btn btn-secondary">Update</button>
             </a>
           </td>
           <td>
-            <a href="#">
-              <button class="btn btn-secondary">Delete</button>
-            </a>
+            <input type="submit" class="btn btn-secondary" value="Delete">
           </td>
         </tr>
       {% endfor %}
