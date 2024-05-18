@@ -6,9 +6,9 @@
   </h1>
   {% if todo_list %}
     {% for task in todo_list %}
-      <h3>{{ task.title }} {{ task.status }}
+      <h3>{{ task.title }}: <span class="{% if task.status == 'Done' %}task-done{% else %}task-undone{% endif %}">{{ task.status }}</span>
       <div class="float-right">
-        <form action="#" method="post">
+        <form action="{% url 'todo:complete-task' task.pk %}" method="post">
           {% csrf_token %}
           {% if task.status == "Not Done" %}
             <input type="submit" class="btn btn-primary" value="Complete">
