@@ -41,10 +41,10 @@ class CompleteTaskView(generic.UpdateView):
 
     def post(self, request, *args, **kwargs):
         task = self.get_object()
-        if task.status == "Done":
-            task.status = "Not Done"
+        if task.completed:
+            task.completed = False
         else:
-            task.status = "Done"
+            task.completed = True
         task.save()
         return redirect(self.get_success_url())
 
