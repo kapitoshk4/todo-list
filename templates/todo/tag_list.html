@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>Tags
+    <a href="{% url 'todo:tag-create' %}" class="btn btn-primary float-right">Add</a>
+  </h1>
+  <table class="table">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+    {% if tags %}
+      {% for tag in tags %}
+        <tr>
+          <td>{{ tag.title }}</td>
+          <td>
+            <a href="{% url 'todo:tag-update' pk=tag.pk %}">
+              <button class="btn btn-secondary">Update</button>
+            </a>
+          </td>
+          <td>
+            <form action="{% url 'todo:tag-delete' pk=tag.pk %}" method="post">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-secondary" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </table>
+{% endblock %}

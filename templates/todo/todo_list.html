@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <h1>TODO list
+    <a href="{% url 'todo:task-create' %}" class="btn btn-primary float-right">Add task</a>
+  </h1>
+  {% if todo_list %}
+    {% for task in todo_list %}
+      <h3>{{ task.title }}:
+        {% if task.completed %}
+          <span class="task-done">Done</span>
+        {% else %}
+          <span class="task-undone">Not done</span>
+        {% endif %}
+      <div class="float-right">
+        <form action="{% url 'todo:complete-task' task.pk %}" method="post">
+          {% csrf_token %}
+          {% if not task.completed %}
+            <input type="submit" class="btn btn-primary" value="Complete">
+          {% else %}
+            <input type="submit" class="btn btn-secondary" value="Undo">
+          {% endif %}
+        </form>
+      </div>
+      </h3>
+      <p>{{ task.created_at }}</p>
+      <p>Tags: 
+        {% for tag in task.tags.all %}
+          {{ tag.title }}
+        {% endfor %}
+        <a href="{% url 'todo:task-update' pk=task.pk %}">Update</a>
+        <a href="{% url 'todo:task-delete' pk=task.pk %}">Delete</a>
+      </p>
+      <hr>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

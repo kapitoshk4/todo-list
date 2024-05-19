@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To do list</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      {% block sidebar %}
+        {% include "includes/sidebar.html" %}
+      {% endblock %}
+    </div>
+    <div class="col-sm-9">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
+</body>
+</html>
