@@ -17,5 +17,6 @@ class TodoForm(forms.ModelForm):
     deadline = forms.DateField(
         widget=forms.DateInput(attrs={
             "type": "date"
-        })
+        }),
+        required=False
     )
